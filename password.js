@@ -17,3 +17,5 @@ function generate(){
     // add password to textbox/
     document.getElementById("display").value = password;
 }
+//  console log generate or password? ask eli or dustin
+console.log (generate)
