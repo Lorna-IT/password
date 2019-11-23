@@ -11,11 +11,26 @@ function generate(){
     
     // create for loop to choose password characters
     for(var i = 0; i <= complexity; i++){
-        password = password + values.charAt(Math.floor(Math.random() * Math.floor(values.length - 1)));
+        password = password + values.charAt(Math.floor(Math.random() * values.length));
     }
 
     // add password to textbox/
     document.getElementById("display").value = password;
+
+    return password
 }
 //  console log generate or password? ask eli or dustin
-console.log (generate)
+// console.log (generate())
+document.getElementById('gen').onclick = generate
+
+
+
+// function to copy to clipboard
+function copypassword(){
+    console.log('copypassword function')
+}
+
+document.getElementById("length");
+
+// add password to previousy generated password section 
+document.getElementById("lastpasswords").textContent += generate() + "<br />;"
