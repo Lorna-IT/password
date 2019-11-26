@@ -11,44 +11,85 @@ function upperCase() {
 
 function numbers () {
     var nmCharset = ["1","2","3","4","5","6","7","8","9","0"]
-    return nmCharset[Math.floor(Math.random() * nmCharset.lenght)]
+    return nmCharset[Math.floor(Math.random() * nmCharset.length)]
 }
 
 function special () {
     var spCharset = ["!","@","#","$","%","^","&","*","(",")","?","=","+"]
-    retuen spCharset[Math.floor(Math.random() * spCharset.length)]
+    return spCharset[Math.floor(Math.random() * spCharset.length)]
 }
 
-    // set password length/complexity
-    let complexity = document.getElementById("slider").value;
+var finalPass1 = []
 
-    // possible password values
-    let values = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrxtuvwxyz1234567890!@#$%^&*()_+";
+var finalPass2 = ""
+var finalPass3 = ""
 
-    let password = "";  
-    
-    // create for loop to choose password characters
-    for(var i = 0; i <= complexity; i++){
-        password = password + values.charAt(Math.floor(Math.random() * values.length));
+var pLength = 8
+
+var lcInclude = false
+var ucInclude = false
+var nmInclude = false
+var spInclude = false
+
+function uInput () {
+    pLength = document.getElementById("pLengthBox").value
+
+    if (document.getElementById("lcIncludeBox").checked) {
+        lcInclude = true
+    } else {
+        lcInclude = false
+    }
+    if (document.getElementById("ucIncludeBox").checked) {
+        ucInclude = true
+    } else {
+        ucInclude = false
+    }    
+    if (document.getElementById("nmIncludeBox").checked) {
+        nmInclude = true    
+    } else {
+        nmInclude = false
+    }
+    if (document.getElementById("spIncludeBox").checked) {
+        spInclude = true 
+    } else {
+        spInclude = false
     }
 
-    // add password to textbox/
-    document.getElementById("display").value = password;
-
-    return password
 }
-//  console log generate or password? ask eli or dustin
-// console.log (generate())
-document.getElementById('gen').onclick = generate
+function sanitize() {
+    if (pLength <8 || pLength > 28) {
+        alert("please select more options")
+    } else {
 
-
-
-// function to copy to clipboard
-function copypassword(){
-    console.log('copypassword function')
+    }
+    finalPass1.length = 0;
 }
+function createPass () {
+    var fns = []
+    if (lcInclude === true) {
+        fns.push(lowerCase)
+    }
+    if (ucInclude === true) {
+        fns.push(upperCase)
+    }
+    if (nmInclude === true) {
+        fns.push(numbers)   
+    } 
+    if (spInclude === true) {
+        fns.push(special)
+    }
 
-document.getElementById("length");
-
-// add password to previousy generated password section 
-document.getElementById("lastpasswords").textContent += generate() + "<br />;"
+    // for loop
+    for (i = 0; i < pLength; i++) {
+        var rando = Math.floor(Math.random() * fns.length)
+        finalPass1.push(fns[rando]())
+    }
+}
+function convert () {
+    finalPass2 = (finalPass1.toString())
+    finalPass3 = (finalPass2.replace(""))
+}
+function releasePass() {
+    (document.getElementById("passOut").innerHTML = finalPass3)
+    (document.getElementById("passOut").style.display = "inline-block");
+}
