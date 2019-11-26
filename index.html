@@ -26,21 +26,30 @@
                 <div class="content">
                     <h4>Random Password Generator</h4>
                     <br />
-                    <p>Upper Case/Lower Case/Symbols</p>
-                    <input type="checkbox" id="upperCase">
-                    <input type="text" id="display">
-                    <br />
-                    <input type="range" min="0" max="50" name="slider" id="slider">
-                    <br />
+                    <ul>
+                        <li>Enter a password length between 8-28</li>
+                        <li><input id="pLenghtBox" type= "text"></input></li>
 
-                    <!-- button area -->
-                    <button id="gen" onClick="generate">Generate</button>
-                    <button onclick="copyPassword">Copy to Clipboard</button>
-                    <div id="length"></div>
-                </div>
+                        <!-- create checkboxes for user to pick from -->
+                        <li><input id="lcIncludeBox" type="checkbox">Check to use lowercase letters</input></li>
 
+                        <li><input id="ucIncludeBox" type="checkbox">Check to use uppercase letters</input></li>
 
-            <!-- New area for previous passwords -->
+                        <li><input id="nmIncludeBox" type="checkbox">Check to use numbers</input></li>
+
+                        <li><input id="spIncludeBox" type="checkbox">Check to use special characters</input></li>
+                    </ul>
+
+                    <input class="button" type="submit" onclick="myFunction()" value="Generate">
+                        
+                     <br />
+
+                     <input class="button" type="submit" onclick="myFunction()" value="Send it">
+                     <input class="button" type="submit" onclick="myFunction()" value="Display Password">    
+                    
+                    
+
+                   <!-- New area for previous passwords -->
             <div class="Previous Passwords">
                 <b>Previous Generated Passwords</b>
                 <br />
