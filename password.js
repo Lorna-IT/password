@@ -24,6 +24,7 @@ function special () {
 }
 
 var finalPass1 = ""
+var fns = []
 
 // var finalPass2 = ""
 // var finalPass3 = ""
@@ -36,8 +37,8 @@ var nmInclude = false
 var spInclude = false
 
 function uInput () {
-    pLength = document.getElementById("pLengthBox").value
 
+    fns = []
     if (document.getElementById("lcIncludeBox").checked) {
         lcInclude = true
     } else {
@@ -61,15 +62,23 @@ function uInput () {
     createPass()
 }
 function sanitize() {
+    pLength = document.getElementById("pLengthBox").value
     if (pLength <8 || pLength > 28) {
         alert("please select more options")
     } else {
-        return
+        uInput()
     }
     //finalPass1.length = 0;
 }
+
+function updatePW(myString){
+    document.getElementById("display").value = myString
+}
+
 function createPass () {
-    var fns = []
+    
+    finalPass1 = ''
+
     if (lcInclude === true) {
         fns.push(lowerCase())
     }
@@ -81,15 +90,19 @@ function createPass () {
     } 
     if (spInclude === true) {
         fns.push(special())
-    }
+    } 
 
+    
     fns = fns.flat()
-
+    
     // for loop
     for (i = 0; i < pLength; i++) {
         var rando = Math.floor(Math.random() * fns.length)
         finalPass1 += fns[rando]
     }
+    console.log(finalPass1)
+    if (length < 1)
+    updatePW(finalPass1)
 }
 
 // function convert () {
