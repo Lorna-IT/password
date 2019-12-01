@@ -63,7 +63,7 @@ function uInput () {
 }
 function sanitize() {
     pLength = document.getElementById("pLengthBox").value
-    if (pLength <8 || pLength > 28) {
+    if (pLength <8 || pLength > 128) {
         alert("please select more options")
     } else {
         uInput()
